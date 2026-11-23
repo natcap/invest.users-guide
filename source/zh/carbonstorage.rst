@@ -98,6 +98,8 @@ REDD 场景分析
 
 .. note:: 所有的碳数据应该是元素碳，而不是CO\ :sub:`2`。
 
+- :investspec:`carbon aoi_path`
+
 - :investspec:`carbon lulc_bas_path`
 
 - :investspec:`carbon lulc_bas_year`
@@ -138,6 +140,10 @@ REDD 场景分析
 - :investspec:`carbon rate_change` 这是方程:eq:`carbon_value`中的:math:`c`。随着排放对预期的气候变化相关损害的影响随着时间的推移而变化，这将调整封存碳的价值。
 
   将这一比率设置大于0%意味着未来封存的碳的社会价值小于现在封存的碳的价值。人们普遍认为，需要立即减少温室气体排放，以避免超过温室气体大气浓度阈值，从而导致到2105年全球平均气温升高3摄氏度或更高。一些人认为，这样的温度变化将导致全球经济的重大破坏(Stern et al. 2006)。因此，从现在起许多年后发生的任何温室气体排放减少可能对是否通过这一关键浓度阈值都没有影响。如果是这样的话，在遥远的未来，碳封存将是相对没有价值的，而大于零的碳折价率是有保证的。
+
+- :investspec:`carbon target_projection_id`
+
+- :investspec:`carbon target_pixelsize_id`
 
 
 解释结果

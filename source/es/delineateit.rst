@@ -16,7 +16,7 @@ Introducción
 
 Muchos de los modelos de agua dulce de InVEST requieren polígonos de cuencas hidrográficas para agregar el servicio ecosistémico que se proporciona a quienes recibirán los beneficios. Sin embargo, hemos comprobado que la creación de cuencas hidrográficas con las herramientas existentes es difícil y a menudo requiere conocimientos específicos y/o conjuntos de herramientas propias. Para responder a esta necesidad, hemos desarrollado nuestro propio algoritmo de delineación de cuencas hidrográficas publicado en el paquete SIG PyGeoprocessing, y envuelto en una interfaz de uso dentro de InVEST. Todo el enrutamiento del MDE es manejado por PyGeoprocessing que resuelve los sumideros y mesetas hidrológicas y utiliza D8 para enrutar las direcciones del flujo.
 
-Consulte también la sección **Trabajar con el MDE** de esta guía de uso para obtener más información sobre la preparación de un MDE para su uso en InVEST, y su utilización para crear corrientes y cuencas hidrográficas. 
+Consulte también la sección **Trabajar con el MDE** de esta guía de uso para obtener más información sobre la preparación de un MDE para su uso en InVEST, y su utilización para crear corrientes y cuencas hidrográficas.
 
 Pasos del modelo
 ================
@@ -34,11 +34,11 @@ El modelo aplica el algoritmo de enrutamiento D8 al MDE llenado para calcular la
 Detectación de puntos de vertido
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Un punto de vertido es un punto en el que el agua fluye fuera del área definida del mapa de dirección del flujo, ya sea fuera del borde del ráster o dentro de un píxel de nodata.
-Si se selecciona la opción de Detectar Puntos de Vertido, el modelo colocará un punto de vertido en el centro de cada píxel que fluya fuera del borde de la trama o dentro de un píxel nodata. Alternativamente, puede proporcionar su propia capa de puntos de vertido a través del input  *Salidas de la cuenca*. 
+Si se selecciona la opción de Detectar Puntos de Vertido, el modelo colocará un punto de vertido en el centro de cada píxel que fluya fuera del borde del ráster o dentro de un píxel nodata. Alternativamente, puede proporcionar su propia capa de puntos de vertido a través del input  *Salidas de la cuenca*.
 
 Ajuste de puntos a la corriente más cercana
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Si un elemento de salida no se encuentra directamente en una corriente, se generará una cuenca muy pequeña que no suele ser correcta. DelineateIt puede ajustar los puntos de salida a la corriente más cercana para crear cuencas hidrográficas más sólidas. Para ello, la herramienta construye un mapa de corrientes y, a continuación, reubica los puntos de salida de las cuencas hidrográficas en la corriente más cercana que se encuentre dentro de la *distancia de ajuste* dada como input al modelo.  
+Si un elemento de salida no se encuentra directamente en una corriente, se generará una cuenca muy pequeña que no suele ser correcta. DelineateIt puede ajustar los puntos de salida a la corriente más cercana para crear cuencas hidrográficas más sólidas. Para ello, la herramienta construye un mapa de corrientes y, a continuación, reubica los puntos de salida de las cuencas hidrográficas en la corriente más cercana que se encuentre dentro de la *distancia de ajuste* dada como input al modelo.
 
 Cálculo de la acumulación de flujo
 ----------------------------------

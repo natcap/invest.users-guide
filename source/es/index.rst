@@ -1,11 +1,11 @@
-﻿.. archivo maestro de documentación de prueba, creado por
-   sphinx-quickstart el Vie Ene 28 23:39:07 2011.
-   Puede adaptar este archivo completamente a su gusto, pero al menos debería
-   contener la directiva raíz `toctree`.
+.. test documentation master file, created by
+   sphinx-quickstart on Fri Jan 28 23:39:07 2011.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
 
-Guía de uso de InVEST®
-======================
+Guía del usuario de InVEST®
+===========================
 
 .. toctree::
    :maxdepth: 3
@@ -17,11 +17,13 @@ Guía de uso de InVEST®
    :scale: 50 %
 
 
-**Cita sugerida**: Natural Capital Alliance, |commit_year|. InVEST |version|.
-|invest_doi|
+La Alianza por el Capital Natural impulsa la ciencia y crea herramientas prácticas para incorporar los valores de la naturaleza en la toma de decisiones. Nuestro trabajo se inspira en una red global más amplia de más de 150 organizaciones de investigación y más de 350 organizaciones de profesionales de los sectores público y privado; se crea junto con esta red y se implementa a través de ella. Para consultar la lista de miembros de la Alianza por el Capital Natural, visite https://naturalcapitalalliance.stanford.edu/about/global-network.
+
+**Cita sugerida**: Natural Capital Alliance, |commit_year|.
+InVEST |version|. |invest_doi|
 
 
-**Colaboradores/as**\*:
+**Colaboradores**\*:
 
 .. hlist::
    :columns: 3
@@ -108,26 +110,18 @@ Guía de uso de InVEST®
    * Zheng, Hua
    * Ziv, Guy
 
-Además, agradecemos la ayuda de cientos de colaboradores que han cocreado
-soluciones en el contexto de compromisos en todo el mundo.
+Además, agradecemos la colaboración de cientos de colaboradores que han participado en la creación conjunta de soluciones mediante iniciativas en todo el mundo.
 
-\*Hacemos todo lo posible para mantener esta lista completa y actualizada, pero reconocemos
-que es posible que hayamos dejado de lado a alguien sin darnos cuenta. Si no ve su nombre en la lista
-anterior y cree que este debería constar, comuníquese con naturalcapitalalliance@stanford.edu.
+\*Hacemos todo lo posible por mantener esta lista completa y actualizada, pero reconocemos que podríamos haber omitido a alguien inadvertidamente. Si su nombre no aparece en la lista anterior y considera que debería estar incluido, comuníquese con naturalcapitalalliance@stanford.edu.
 
-Directrices de atribución
--------------------------
-Cuando haga referencia a análisis o productos de datos
-producidos con InVEST, cite el uso de InVEST e incluya un hipervínculo
-(por ejemplo, Wste análisis utilizó InVEST :sup:`®` :
-https://naturalcapitalalliance.stanford.edu/software/invest). El símbolo de marca
-(:sup:`®`) debe utilizarse en la primera mención de InVEST. La cita completa de
-artículos, informes, etc. está disponible más arriba. También puede utilizar el
-`logotipo de InVEST <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_
-de acuerdo con nuestra `política de uso de marcas y logotipos <https://naturalcapitalalliance.stanford.edu/invest-trademark-and-logo-use-policy>`_ .
+Pautas de atribución
+--------------------
+Al hacer referencia a análisis o productos de datos elaborados con InVEST, cite el uso de InVEST e incluya un hipervínculo (por ejemplo: Este análisis utilizó InVEST :sup:`®` : https://naturalcapitalalliance.stanford.edu/software/invest). El símbolo de marca registrada (:sup:`®`) debe utilizarse en la primera mención de InVEST. La cita completa para artículos, informes, etc. está disponible más arriba. También puede utilizar el `logotipo de InVEST <https://drive.google.com/drive/folders/1LrOIY2LOAwAIqG0uAJEReA6ndFEAGpc_>`_ de acuerdo con nuestra `Política de uso de marcas y logotipos <https://naturalcapitalalliance.stanford.edu/invest-trademark-and-logo-use-policy>`_.
 
-Introducción y puesta en marcha
--------------------------------
+
+
+Introducción y primeros pasos
+-----------------------------
 
 .. toctree::
    :maxdepth: 2
@@ -141,13 +135,14 @@ Introducción y puesta en marcha
 
    using_invest
    data_sources
+   calibration_freshwater
 
 
-Modelos InVEST
---------------
+Modelos de InVEST
+-----------------
 
-Servicios ecosistémicos de apoyo y finales
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Servicios ecosistémicos de soporte y finales
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. toctree::
    :maxdepth: 2
 
@@ -167,13 +162,14 @@ Servicios ecosistémicos de apoyo y finales
    scenic_quality
    urban_cooling_model
    urban_flood_mitigation
+   urban_mental_health
    urban_nature_access
    stormwater
    recreation
    wave_energy
 
 Herramientas adicionales
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
@@ -182,11 +178,10 @@ Herramientas adicionales
    routedem
    scenario_gen_proximity
 
-Python API
-^^^^^^^^^^
+API de Python
+^^^^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
 
    invest_api
-

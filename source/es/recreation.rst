@@ -1,175 +1,208 @@
-﻿.. _recreation:
+.. _recreation:
 
-**************************
-Visitación: ocio y turismo
-**************************
+*****************************
+Visitas: recreación y turismo
+*****************************
 
 Resumen
 =======
 
-El ocio y el turismo son componentes importantes de muchas economías nacionales y locales y contribuyen de innumerables maneras a la calidad de vida, el sentido del lugar, la conexión social, el bienestar físico, el aprendizaje y otros aspectos intangibles. Para cuantificar el valor de los entornos naturales, el modelo de recreación InVEST predice la propagación de los días-persona de recreación, basándose en las ubicaciones de los hábitats naturales y otras características que son un factor en las decisiones de las personas sobre dónde recrearse. La herramienta estima la contribución de cada atributo a la tasa de visitas en una simple regresión lineal. A falta de datos empíricos sobre las visitas, parametrizamos el modelo utilizando un sustituto de las visitas: las fotografías geoetiquetadas publicadas en el sitio web flickr. A partir de las estimaciones de los días de uso de las fotografías, el modelo predice cómo los futuros cambios en las características naturales alterarán los índices de visitas. La herramienta produce mapas que muestran los patrones actuales de uso recreativo y mapas de los patrones futuros de uso bajo escenarios alternativos.
+La recreación y el turismo son componentes importantes de muchas economías nacionales y locales, y contribuyen de innumerables maneras a la calidad de vida, el sentido de pertenencia a un lugar, la conexión social, el bienestar físico, el aprendizaje y otros aspectos intangibles. Para cuantificar el valor de los entornos naturales, el modelo de recreación de InVEST predice la distribución de los días-persona de recreación a partir de la ubicación de los hábitats naturales y de otras características que influyen en las decisiones de las personas sobre dónde realizar actividades recreativas. La herramienta estima la contribución de cada atributo a la tasa de visitas mediante una regresión lineal simple. Cuando no se dispone de datos empíricos sobre las visitas, el modelo se parametriza utilizando indicadores indirectos: fotografías georreferenciadas publicadas en Flickr y tuits georreferenciados publicados en Twitter. A partir de las estimaciones de días-usuario de fotografías (PUD) y días-usuario de Twitter (TUD), el modelo predice cómo los cambios futuros en las características naturales modificarán las tasas de visita. La herramienta genera mapas que muestran los patrones actuales de uso recreativo y mapas de los patrones futuros bajo distintos escenarios.
 
-**El modelo de recreación está diseñado para responder a estas preguntas básicas**
+**El modelo de Recreación está diseñado para responder estas preguntas básicas:**
 
-1) ¿Cuáles son los índices de visita *relativos* en un paisaje o en un conjunto de lugares?  
+1) ¿Cuáles son las tasas *relativas* de visitas en un paisaje o en un conjunto de sitios?
 
-2) ¿Qué características del entorno natural/construido influyen en el patrón espacial de las tasas de visita y cuáles son los niveles relativos de influencia de esas características?  
+2) ¿Qué características del entorno natural o construido influyen en el patrón espacial de las tasas de visita y cuál es la influencia relativa de esas características?
 
-3) Ante un nuevo escenario en el que los patrones espaciales de las características naturales/construidas han cambiado, ¿cómo cambiarán los índices de visitas en respuesta a ello?  
+3) Ante un nuevo escenario en el que hayan cambiado los patrones espaciales de las características naturales o construidas, ¿cómo cambiarán las tasas de visita en respuesta a esos cambios?
 
 Introducción
 ============
 
-Las actividades recreativas y el turismo son componentes importantes de muchas economías nacionales y locales y contribuyen de innumerables maneras a la calidad de vida, el sentido del lugar, la conexión social, el bienestar físico, el aprendizaje y otros aspectos intangibles. Una razón clave para estudiar los patrones de recreación o turismo es la importancia económica de esta industria. La contribución total de los viajes y el turismo al producto interior bruto (PIB) mundial en 2011 fue de aproximadamente 6.000 millones de dólares (9% del PIB), con un crecimiento previsto de 10.000 millones de dólares para 2022 (World Travel and Tourism Council 2012). Por supuesto, las repercusiones económicas son solo una forma de medir la importancia del ocio y el turismo. Estas actividades contribuyen de forma decisiva a diversos aspectos del bienestar humano (Russell et al. 2013). Por ejemplo, las actividades recreativas al aire libre son una experiencia espiritual para muchas personas (por ejemplo, Trainor y Norgaard 1999), y las interacciones sociales en la naturaleza contribuyen a crear un sentido de lugar (por ejemplo, Willox et al. 2012).
+La recreación y el turismo son componentes importantes de muchas economías nacionales y locales, y contribuyen de innumerables maneras a la calidad de vida, el sentido de pertenencia a un lugar, la conexión social, el bienestar físico, el aprendizaje y otros aspectos intangibles. Una razón fundamental para estudiar los patrones de recreación o turismo es la importancia económica de esta industria. La contribución total de los viajes y el turismo al producto interno bruto (PIB) mundial en 2011 fue de aproximadamente USD 6 billones (9 % del PIB), y se esperaba que creciera hasta USD 10 billones para 2022 (World Travel and Tourism Council 2012). Por supuesto, los impactos económicos son solo una de las formas de medir la importancia de la recreación y el turismo. Estas actividades contribuyen de manera fundamental a diversos aspectos del bienestar humano (Russell et al. 2013). Por ejemplo, para muchas personas la recreación al aire libre constituye una experiencia espiritual (por ejemplo, Trainor y Norgaard 1999), y las interacciones sociales en la naturaleza contribuyen a construir un sentido de pertenencia a un lugar (por ejemplo, Willox et al. 2012).
 
-Una parte importante y creciente de las actividades recreativas está "basada en la naturaleza", lo que implica interacciones con el entorno natural o su apreciación (Balmford et al. 2009). En este tipo de actividades, las características del entorno influyen en las decisiones de las personas sobre dónde, cuándo y cómo recrearse. Quienes bucean, por ejemplo, seleccionan los destinos en función de la claridad y la temperatura del agua y de la diversidad de la vida marina (Williams y Polunin 2000, Uyarra et al. 2009). Quienes observan aves se sienten atraídos por los mejores lugares para ver las especies objetivo (Naidoo y Adamowicz 2005), que inevitablemente son lugares en los que los sistemas naturales mantienen poblaciones de aves deseables (Puhakka et al. 2011). Algunas actividades recreativas dependen de atributos medioambientales como la riqueza de especies (Loureiro et al. 2012), la diversidad de hábitats (Neuvonen et al. 2010, Loureiro et al. 2012), las precipitaciones (Loomis y Richardson 2006) y la temperatura (Richardson y Loomis 2005), así como de otros atributos como las infraestructuras y los atractivos culturales (Mills y Westover 1987, Hill y Courtney 2006).
+Una parte importante y creciente de la recreación se basa en la naturaleza e implica interactuar con el entorno natural o apreciarlo (Balmford et al. 2009). En este tipo de actividades, las características del entorno influyen en las decisiones de las personas sobre dónde, cuándo y cómo realizar actividades recreativas. Por ejemplo, quienes practican buceo SCUBA eligen sus destinos según la claridad y temperatura del agua y la diversidad de la vida marina (Williams y Polunin 2000, Uyarra et al. 2009). Los observadores de aves se sienten atraídos por los mejores lugares para ver las especies que buscan (Naidoo y Adamowicz 2005), que inevitablemente son sitios donde los sistemas naturales sustentan poblaciones de aves deseables (Puhakka et al. 2011). Algunas actividades recreativas dependen de atributos ambientales como la riqueza de especies (Loureiro et al. 2012), la diversidad de hábitats (Neuvonen et al. 2010, Loureiro et al. 2012), la precipitación (Loomis y Richardson 2006) y la temperatura (Richardson y Loomis 2005), así como de otros atributos, como la infraestructura y las atracciones culturales (Mills y Westover 1987, Hill y Courtney 2006).
 
 .. _rec-the-model:
 
 El modelo
 =========
 
-El objetivo del modelo de recreación InVEST es predecir la propagación de los días-persona de recreación y turismo, basándose en las ubicaciones de los hábitats naturales, la accesibilidad y las características construidas que son un factor en las decisiones de las personas sobre dónde recrearse (Adamowicz et al. 2011). La herramienta produce mapas que muestran los patrones actuales de uso recreativo y, opcionalmente, mapas de uso futuro bajo escenarios alternativos.
+El propósito del modelo de recreación de InVEST es predecir la distribución de los días-persona dedicados a la recreación y el turismo, a partir de la ubicación de los hábitats naturales, la accesibilidad y las características construidas que influyen en las decisiones de las personas sobre dónde realizar actividades recreativas (Adamowicz et al. 2011). La herramienta genera mapas que muestran los patrones actuales de uso recreativo y, de manera opcional, mapas del uso futuro bajo escenarios alternativos.
 
 .. _rec-how-it-works:
 
 Cómo funciona
 -------------
 
-El modelo muestra la tasa de visitas a través de paisajes (celdas de la cuadrícula) o en áreas discretas (polígonos) y opcionalmente construye un modelo de regresión para estimar la contribución de los atributos del paisaje a la tasa de visitas, utilizando una regresión lineal simple:
+El modelo muestra la tasa de visitas en paisajes (celdas de una cuadrícula) o en áreas discretas (polígonos) y, de manera opcional, construye un modelo de regresión para estimar la contribución de los atributos del paisaje a la tasa de visitas mediante una regresión lineal simple:
 
-... matth:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ para } i = 1 ... n,
+.. math:: y_i = \beta_{0} + \beta_1 x_{i1} + ... + \beta_{p} x_{ip} \text{ for } i = 1 ... n,
 
-donde :math:`x_{ip}` es la cobertura de cada atributo en cada celda o polígono (en adelante denominado "celda"), :math:`i`, dentro de un Área de Interés (ADI) que contiene :math:`n` celdas. A falta de datos empíricos sobre las visitas para :math:`y_i`, parametrizamos el modelo utilizando una medida de visitas de origen colectivo: fotografías geoetiquetadas publicadas en el sitio web flickr (véase la sección :ref:`rec-photos` para más información). Dicho otra vez, el modelo de recreación InVEST predice la propagación de los días-persona de recreación en el espacio. Para ello, utiliza los atributos de los lugares, como las características naturales (por ejemplo, la distribución de los hábitats), las características construidas (por ejemplo, las carreteras) y los usos humanos (por ejemplo, las actividades industriales), entre otros.
+donde :math:`x_{ip}` representa la cobertura de cada atributo en cada celda o polígono (en adelante, «celda»), :math:`i`, dentro de un Área de Interés (AOI) que contiene :math:`n` celdas. Cuando no existen datos empíricos de visitas para :math:`y_i`, parametrizamos el modelo mediante medidas de visitas obtenidas de fuentes colaborativas: fotografías georreferenciadas publicadas en Flickr y tuits georreferenciados publicados en Twitter (consulte la sección :ref:`rec-userdays` para obtener más información). En otras palabras, el modelo de recreación de InVEST predice la distribución espacial de los días-persona dedicados a la recreación. Para ello utiliza atributos de los lugares, como características naturales (por ejemplo, distribución de hábitats), características construidas (por ejemplo, carreteras) y usos humanos (por ejemplo, actividades industriales), entre otros.
 
-La herramienta comienza transformando en logaritmo todos los valores de :math:`y_i`, tomando el logaritmo natural de la media de días-foto por celda + 1. A continuación, se realiza una regresión lineal simple para estimar el efecto de cada atributo en las tasas de visita transformadas en logaritmos en todas las celdas de la cuadrícula dentro de la región de estudio. Estas estimaciones (los valores :math:`beta_{p}`) pueden utilizarse para un escenario adicional, para predecir cómo los futuros cambios en el paisaje alterarán la tasa de visitas. El modelo utiliza la regresión por mínimos cuadrados ordinarios, realizada por la función linalg.lstsq de la biblioteca numpy de Python (van der Walt et al. 2011).
+La variable de respuesta :math:`y_i` es una transformación logit de la proporción de días-usuario en cada celda (consulte :ref:`rec-userdays`). Luego se realiza una regresión lineal simple para estimar el efecto de cada atributo sobre las tasas de visita en todas las celdas de la cuadrícula de la región de estudio. Estas estimaciones (los valores :math:`\beta_{p}`) pueden utilizarse en un escenario adicional para predecir cómo los cambios futuros del paisaje modificarán las tasas de visita. El modelo utiliza una regresión por mínimos cuadrados ordinarios, ejecutada mediante la función linalg.lstsq de la biblioteca numpy de Python (van der Walt et al. 2011).
 
-.. _rec-photos:
+.. _rec-userdays:
 
-Días de usuarios de fotos
--------------------------
+Días-usuario
+------------
 
-Dado que a menudo solo se recogen datos a escala fina sobre el número de visitantes en unos pocos lugares concretos de cualquier región de estudio, suponemos que la frecuentación actual puede aproximarse mediante el número total de días-persona anuales de fotografías subidas al sitio web para compartir fotografías `flickr <https://www.flickr.com>`_. Muchas de las fotografías de flickr se han asignado a una latitud/longitud específica. Utilizando esta ubicación, junto con el nombre de usuario del fotógrafo y la fecha en que se tomó la imagen, el modelo InVEST cuenta el total de foto-usuarios-día de cada cuadrícula o polígono. Un foto-usuario-día en una ubicación es un fotógrafo único que tomó al menos una foto en un día específico. Para cada celda, el modelo suma el número de foto-usuarios-día para todos los días de 2005-2017 (o un rango definido por el usuario dentro de esos años), y devuelve el número medio anual de foto-usuarios-día (PUD_YR_AVG). PUD_YR_AVG es :math:`y_i` en la ecuación anterior.
+Dado que los datos detallados sobre el número de visitantes suelen recopilarse únicamente en unos pocos lugares específicos de cada región de estudio, suponemos que las visitas actuales pueden aproximarse mediante el número total anual de días-persona representados por las fotografías subidas al sitio web para compartir fotografías `Flickr <https://www.flickr.com>`_ y por los tuits publicados en la plataforma de redes sociales Twitter (actualmente conocida como X). Muchas de las fotografías de Flickr y los tuits tienen asignadas coordenadas específicas de latitud y longitud. Mediante esta ubicación, junto con el nombre de usuario del autor y la fecha en que se tomó la fotografía o se publicó el tuit, el modelo InVEST cuenta el total de días-usuario de fotografías (PUD) y días-usuario de Twitter (TUD) para cada celda de la cuadrícula o polígono.
 
-Hemos observado que el número de personas que visitan un lugar anualmente para recrearse está relacionado con el número de fotografías tomadas en la misma zona y subidas a la base de datos de flickr en 836 atracciones para visitantes de todo el mundo (Wood et al. 2013). La densidad de las fotografías varía espacialmente, lo que repercute en el tamaño de la celda que puede elegirse para el análisis (véase :ref:`rec-data-needs`: Tamaño de la celda). Los cálculos de la PUD se realizan en un servidor remoto a partir de un amplio conjunto de datos globales que el Proyecto Natural Capital se encarga de conservar y mantener.
+Un día-usuario en un lugar corresponde a una persona única que tomó al menos una fotografía o publicó un tuit en un día específico. Para cada celda, el modelo suma el número de días-usuario de fotografías y de Twitter de todos los días comprendidos entre 2012 y 2017 (o de un intervalo definido por el usuario dentro de esos años). Informa el total de PUD y TUD de cada año, así como el promedio anual de PUD y TUD (PUD_YR_AVG y TUD_YR_AVG). En la ecuación anterior, la variable de respuesta :math:`y_i` es una transformación logit de una proporción::
 
-Variables predictivas
+  # La proporción en cada celda i
+  pr_PUD[i] = PUD_YR_AVG[i] / PUD_YR_AVG.sum()
+  pr_TUD[i] = TUD_YR_AVG[i] / TUD_YR_AVG.sum()
+  avg_pr_UD[i] = (pr_PUD[i] + pr_TUD[i]) / 2
+
+  epsilon = avg_pr_UD[avg_pr_UD > 0].min() / 2 # la mitad del valor mínimo distinto de cero
+  avg_pr_UD[avg_pr_UD == 0] = epsilon          # ajuste porque los ceros no pueden transformarse mediante logaritmos
+
+  # Transformación logit:
+  y = ln(avg_pr_UD / (1 - avg_pr_UD))
+
+Hemos observado que el número de personas que visitan anualmente un lugar está relacionado con el número de fotografías tomadas en la misma zona y subidas a la base de datos de Flickr, según un estudio realizado en 836 atracciones turísticas de todo el mundo (Wood et al. 2013). La densidad de fotografías y tuits varía espacialmente, lo que tiene consecuencias para el tamaño de celda que puede elegirse para el análisis (consulte :ref:`rec-data-needs`: Tamaño de celda). Los cálculos de días-usuario se realizan en un servidor remoto, a partir de un extenso conjunto de datos global mantenido y actualizado por The Natural Capital Alliance.
+
+Variables predictoras
 ---------------------
 
-En la ecuación de regresión anterior, los fotos-usuario-días son la variable :math:`y_i` y todas las variables :math:`x` del lado derecho son variables predictivas. Se trata de características del Área de Interés que probablemente influyan en los patrones de visita a través del espacio. Se puede proporcionar cualquier número de variables de predicción y el modelo calculará una regresión que estima los valores de :math:`beta_{p}` para cada predictor. :math:`beta_{p}` indica la relación entre una variable predictiva y la tasa de visitación, después de tener en cuenta todas las demás variables predictivas incluidas en la regresión.
+En la ecuación de regresión anterior, los días-usuario de fotografías constituyen la variable :math:`y_i`, y todas las variables :math:`x` del lado derecho son variables predictoras. Estas son características del Área de Interés que probablemente influyen en los patrones espaciales de las visitas. Los usuarios pueden proporcionar cualquier número de variables predictoras y el modelo calculará una regresión que estime los valores de :math:`\beta_{p}` para cada predictor. :math:`\beta_{p}` indica la relación entre una variable predictora y la tasa de visitas, después de considerar todas las demás variables predictoras incluidas en la regresión.
 
-Hemos encontrado que suele ser útil considerar al menos una variable predictiva de varias categorías principales: capital natural (por ejemplo, hábitats, lagos), capital construido (por ejemplo, carreteras, hoteles), actividades industriales y acceso o costo (por ejemplo, distancia al aeropuerto principal). A menudo, las variables individuales que representan cada una de estas categorías pueden explicar la mayor parte de la variación en los fotos-usuarios-días. Esta herramienta le permite proporcionar variables predictoras en formatos SIG y procesar esas capas de diversas maneras (descritas en la sección :ref:`rec-data-needs`).
+Con frecuencia resulta útil considerar al menos una variable predictora de varias categorías principales: capital natural (por ejemplo, hábitats y lagos), capital construido (por ejemplo, carreteras y hoteles), actividades industriales y acceso o costo (por ejemplo, distancia al aeropuerto principal). A menudo, una sola variable representativa de cada una de estas categorías puede explicar la mayor parte de la variación en los días-usuario de fotografías. Esta herramienta permite proporcionar variables predictoras en formatos SIG y procesar esas capas de diversas maneras (descritas en la sección :ref:`rec-data-needs`).
 
 Análisis de escenarios
 ----------------------
 
-Si se calcula una regresión, el modelo puede estimar opcionalmente las tasas de visitación dado un conjunto de predictores modificados que representan un escenario futuro o alternativo. Los predictores del escenario deben representar las mismas características que se seleccionaron como variables predictivas, pero pueden representar versiones modificadas de esas características (por ejemplo, redes de carreteras modificadas, puntos de hotel adicionales, distribuciones de hábitat alteradas, etc.). Las predicciones de los escenarios se realizan utilizando la ecuación de regresión anterior. En primer lugar, se estiman los coeficientes de cada variable predictiva como se describe en :ref:`rec-how-it-works`, y luego se aplican esos coeficientes a los valores de cada predictor que se ha modificado para un escenario. Consulte la sección :ref:`rec-data-needs` para obtener más detalles sobre la preparación de los datos del escenario.
+Si se calcula una regresión, el modelo puede estimar opcionalmente las tasas de visita a partir de un conjunto de predictores modificados que representan un escenario futuro o alternativo. Los predictores del escenario deben representar las mismas características seleccionadas como variables predictoras, pero pueden corresponder a versiones modificadas de esas características (por ejemplo, redes viales modificadas, puntos adicionales de hoteles o distribuciones de hábitats alteradas). Las predicciones del escenario se realizan mediante la ecuación de regresión anterior. Primero se estiman los coeficientes de cada variable predictora, como se describe en :ref:`rec-how-it-works`; luego, esos coeficientes se aplican a los valores de cada predictor que se haya modificado para el escenario. Consulte la sección :ref:`rec-data-needs` para obtener más detalles sobre la preparación de los datos de escenarios.
 
 Limitaciones y simplificaciones
 ===============================
 
-El modelo no presupone que ninguna variable de predicción tenga un efecto sobre las visitas. En cambio, la herramienta estima la magnitud del efecto de cada predictor basándose en su correspondencia espacial con la visitación actual en el área de interés. Los valores de fotos-personas-días por celdas se toman como medida de la visitación y se hace una regresión contra los valores de las variables predictivas en todas las celdas. Cuando se proporciona una tabla de predicción de escenarios, la herramienta utiliza los valores :math:`beta_{p}` calculados para la tabla de predicción y los aplica a los predictores de escenarios futuros. Este paso requiere la suposición de que las respuestas de las personas a los atributos que sirven de predictores en el modelo no cambiarán con el tiempo. En otras palabras, en el futuro, las personas seguirán siendo atraídas o repelidas por los predictores de la misma manera que lo son actualmente.
+El modelo no presupone que alguna variable predictora tenga un efecto sobre las visitas. En su lugar, la herramienta estima la magnitud del efecto de cada predictor a partir de su correspondencia espacial con las visitas actuales en el Área de Interés. Los valores de días-persona de fotografías por celda se consideran una medida de las visitas y se regresan frente a los valores de las variables predictoras en todas las celdas. Cuando se proporciona una Tabla de predictores de escenario, la herramienta utiliza los valores :math:`\beta_{p}` calculados para la Tabla de predictores y los aplica a los predictores del escenario futuro. Este paso supone que las respuestas de las personas a los atributos utilizados como predictores del modelo no cambiarán con el tiempo. En otras palabras, en el futuro las personas seguirán sintiéndose atraídas por los predictores —o rechazándolos— de la misma manera que lo hacen actualmente.
 
-.. _rec-data-needs: 
+.. _rec-data-needs:
 
-Necesidades de datos
-====================
+Datos necesarios
+================
 
-.. note:: Todos los datos del SIG a los que se hace referencia en la tabla de predicción deben estar en el mismo sistema de coordenadas *proyectado* que el shapefile del Área de Interés (ADI). Todos los cálculos de distancia, longitud y área utilizan las mismas unidades que el sistema de coordenadas del ADI.
+.. note:: Todos los datos SIG mencionados en la Tabla de predictores deben estar en el mismo sistema de coordenadas *proyectadas* que el vector del Área de Interés (AOI). Todos los cálculos de distancia, longitud y área utilizan las mismas unidades que el sistema de coordenadas del AOI.
 
 - :investspec:`recreation.recmodel_client workspace_dir`
 
 - :investspec:`recreation.recmodel_client results_suffix`
 
-- :investspec:`recreation.recmodel_client aoi_path` Se recomienda proyectar este vector en unidades lineales, especialmente si se utiliza para calcular una regresión y un escenario. Los resultados se agregan a estos polígonos.
+- :investspec:`recreation.recmodel_client aoi_path` Se recomienda que este vector esté proyectado en unidades lineales, especialmente si se utiliza para calcular una regresión y un escenario. Los resultados se agregan a estos polígonos.
 
 - :investspec:`recreation.recmodel_client start_year`
 - :investspec:`recreation.recmodel_client end_year`
 
-- :investspec:`recreation.recmodel_client compute_regression` Si no se selecciona, los resultados se limitarán a un mapa de las tasas de visitación actuales en los polígonos o celdas de la cuadrícula del ADI.
+- :investspec:`recreation.recmodel_client compute_regression` Si no se selecciona esta opción, los resultados se limitarán a un mapa de las tasas actuales de visitas en los polígonos o las celdas de la cuadrícula del AOI.
 
-- :investspec:`recreation.recmodel_client predictor_table_path` These predictors are the :math:`x_{ip}` values described in :ref:`rec-how-it-works`.
+- :investspec:`recreation.recmodel_client predictor_table_path` Estos predictores son los valores :math:`x_{ip}` descritos en :ref:`rec-how-it-works`.
 
     Columnas:
 
     - :investspec:`recreation.recmodel_client predictor_table_path.columns.id`
-    - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` En el ejemplo siguiente, los archivos enumerados en la columna de la ruta se encuentran en la misma carpeta que el archivo Predictor_Table.csv. Los archivos de predictores pueden estar ubicados en otros lugares, pero se debe incluir en esta tabla la ruta completa a ellos o la ruta relativa a este archivo CSV.
+    - :investspec:`recreation.recmodel_client predictor_table_path.columns.path` En el ejemplo siguiente, los archivos indicados en la columna path se encuentran en la misma carpeta que el archivo Predictor_Table.csv. Los archivos de predictores pueden estar en otros lugares, pero en esta tabla debe incluirse su ruta completa o la ruta relativa a este archivo CSV.
     - :investspec:`recreation.recmodel_client predictor_table_path.columns.type`
 
-    **Ejemplo de tabla de predicción:**
-    
+    **Ejemplo de tabla de predictores:**
+
     .. csv-table::
        :file: ../../invest-sample-data/recreation/predictors.csv
        :header-rows: 1
        :widths: auto
 
-- :investspec:`recreation.recmodel_client scenario_predictor_table_path` Esta tabla tiene las mismas columnas y el mismo formato que la Tabla de predicción descrita anteriormente.
+- :investspec:`recreation.recmodel_client scenario_predictor_table_path` Esta tabla tiene las mismas columnas y el mismo formato que la Tabla de predictores descrita anteriormente.
 
 - :investspec:`recreation.recmodel_client grid_aoi`
 
 - :investspec:`recreation.recmodel_client grid_type`
 
-- :investspec:`recreation.recmodel_client cell_size` El tamaño de la celda está **en las mismas unidades lineales que el ADI**. Por ejemplo, si el ADI está en una proyección UTM con unidades de metros, el parámetro del tamaño de la celda también estará en metros.
+- :investspec:`recreation.recmodel_client cell_size` El tamaño de celda se expresa **en las mismas unidades lineales que el AOI**. Por ejemplo, si el AOI utiliza una proyección UTM cuyas unidades son metros, el parámetro de tamaño de celda también se expresará en metros.
 
-   .. note:: El número de celdas de la cuadrícula afecta en gran medida al tiempo de procesamiento. Si no está seguro del tamaño de las celdas que debe especificar, elija un tamaño muy grande la primera vez (10 km o más), y luego vuelva a ejecutar el modelo con tamaños más pequeños si es necesario. El tamaño y el número de celdas adecuados dependen de varios factores, como los objetivos del estudio y la densidad de las fotografías, que varía de una región a otra. Para que el modelo calcule los efectos de las variables predictivas (tal y como se describe en la sección :ref:`rec-how-it-works`), se debe seleccionar un tamaño de celda lo suficientemente grande como para que la mayoría de las celdas contengan fotografías. Le recomendamos que empiece a ejecutar el modelo con tamaños de celda que oscilen entre 10 y 100 km, en función de la superficie total del ADI. A continuación, evalúe de forma iterativa los resultados del modelo (descritos en :ref:`rec-interpreting-results`) y vuelva a ejecutar el modelo para determinar un tamaño de celda adecuado.
+   .. note:: El número de celdas de la cuadrícula afecta considerablemente el tiempo de procesamiento. Si no sabe qué tamaño de celda especificar, elija inicialmente un tamaño muy grande (10 km o más) y vuelva a ejecutar el modelo con tamaños menores si es necesario. El tamaño y el número de celdas adecuados dependen de varios factores, incluidos los objetivos del estudio y la densidad de fotografías, que varía de una región a otra. Para que el modelo calcule los efectos de las variables predictoras (como se describe en la sección :ref:`rec-how-it-works`), los usuarios deben seleccionar un tamaño de celda suficientemente grande para que la mayoría de las celdas contengan fotografías. Recomendamos comenzar ejecutando el modelo con tamaños de celda de entre 10 y 100 km, según la extensión total del AOI. Luego, evalúe iterativamente los resultados del modelo (descritos en :ref:`rec-interpreting-results`) y vuelva a ejecutarlo para determinar un tamaño de celda adecuado.
 
 .. _rec-running-model:
 
 Ejecución del modelo
 ====================
 
-.. warning:: Este modelo requiere una conexión a Internet.
+.. warning:: Tenga en cuenta que el modelo de recreación requiere conexión a Internet.
 
-El modelo utiliza una interfaz para introducir todos los datos necesarios y opcionales (véase :ref:`rec-data-needs`). El shapefile del ADI se envía a un servidor manejado por el Proyecto Natural Capital , donde se realizan los cálculos de fotos-usuarios-días. Por consiguiente, este modelo requiere una conexión a Internet. El modelo puede ejecutarse con tres configuraciones:
+El modelo utiliza una interfaz para introducir todos los datos obligatorios y opcionales (consulte :ref:`rec-data-needs`). El AOI se envía a un servidor administrado por Natural Capital Alliance, donde se realizan los cálculos de PUD y TUD. Por consiguiente, este modelo requiere conexión a Internet. El modelo puede ejecutarse con tres configuraciones:
 
-#. Obtenga un mapa de las tasas de visita en su Área de Interés. Proporcione un "Espacio de trabajo" y un "Área de interés", no marque "Calcular regresión". Los resultados incluyen "pud_results.shp" (:ref:`rec-interpreting-results`).
-#. Obtenga un mapa de tasas de visitas y calcule una regresión con un conjunto de predictores. Proporcione un "Espacio de trabajo" y un "Área de interés", marque "Calcular regresión" y proporcione la "Tabla de predictores" :ref:`rec-data-needs`. Los resultados incluyen "pud_results.shp", "predictor_data.shp" y "regression_coefficients.txt" (:ref:`rec-interpreting-results`).
-#. Estime las tasas de visitación para un Escenario. Proporcione un "Espacio de trabajo" y un "Área de interés", marque "Calcular regresión" y proporcione una "Tabla de predictores" y una "Tabla de predictores del escenario" (:ref:`rec-data-needs`). Los resultados incluyen "pud_results.shp", "predictor_data.shp", "regression_coefficients.txt" y "scenario_results.shp" (:ref:`rec-interpreting-results`).
+#. Obtener un mapa de las tasas de visita en el Área de Interés. Proporcione un «Workspace» y un «Area of Interest», y no marque «Compute Regression». Los resultados incluyen «pud_results.gpkg», «tud_results.gpkg» y «regression_data.gpkg» (:ref:`rec-interpreting-results`).
+#. Obtener un mapa de las tasas de visita y calcular una regresión con un conjunto de predictores. Proporcione un «Workspace» y un «Area of Interest», marque «Compute Regression» y proporcione la «Predictors Table» (:ref:`rec-data-needs`). Los resultados adicionales incluyen «regression_data.gpkg», «regression_coefficients.csv» y «regression_summary.txt» (:ref:`rec-interpreting-results`).
+#. Estimar las tasas de visita para un escenario. Proporcione un «Workspace» y un «Area of Interest», marque «Compute Regression» y proporcione la «Predictors Table» y la «Scenario Predictors Table» (:ref:`rec-data-needs`). Los resultados adicionales incluyen «scenario_results.gpkg» (:ref:`rec-interpreting-results`).
 
-El tiempo necesario para ejecutar el modelo varía en función de la extensión del ADI, el número de celdas de la cuadrícula y el número y tamaño de las capas de predicción. Le aconsejamos que ejecute el modelo primero sin calcular una regresión, y que empiece con un tamaño de celda grande si cuadricula el ADI.
+El tiempo necesario para ejecutar el modelo varía según la extensión del AOI, el número de celdas de la cuadrícula y el número y tamaño de las capas de predictores. Recomendamos ejecutar primero el modelo sin calcular una regresión y comenzar con un tamaño de celda grande si se utiliza una cuadrícula para el AOI.
 
-Tenga en cuenta que el servidor que realiza el análisis también registra la dirección IP de cada usuario/a.
+Tenga en cuenta que el servidor que realiza el análisis también registra la dirección IP de cada usuario.
 
 .. _rec-interpreting-results:
 
 Interpretación de los resultados
 ================================
 
+Nuevos resultados del modelo
+----------------------------
+- :investspec:`recreation.recmodel_client workspace_dir`
+
 Resultados del modelo
 ---------------------
 
-+ **pud_results.shp**: Las características de este shapefile de polígonos coinciden con el shapefile original del ADI, o con la versión cuadriculada del ADI si se ha seleccionado la opción "Cuadricular el ADI". Los atributos incluyen todas las columnas de atributos presentes en el shapefile del ADI original, junto con estos:
++ **PUD_results.gpkg**: Las entidades de este geopackage de polígonos coinciden con el AOI original o con la versión del AOI dividida en cuadrícula, si se seleccionó la opción «Grid the AOI». Los atributos incluyen:
 
-  + **PUD_YR_AVG** es el promedio de fotos-usuaruos-días por año (:ref:`rec-photos`). Corresponde a la media de *PUD* descrita en Wood et al. (2013).
+  + **PUD_YR_AVG** es el promedio de días-usuario de fotografías por año (:ref:`rec-userdays`). Corresponde al promedio de *PUD* descrito en Wood et al. (2013).
 
-  + **PUD_JAN**, PUD_FEB, .... PUD_DEC es el promedio de fotos-usuarios-días de cada mes. Por ejemplo, si el intervalo de fechas es el predeterminado 2005-2014, entonces PUD_JAN es la media de los diez foto-días de enero.
+  + **PUD_JAN**, PUD_FEB, .... PUD_DEC es el promedio de días-usuario de fotografías para cada mes. Por ejemplo, si el intervalo de fechas es el predeterminado (2012-2017), PUD_JAN es el promedio de los días-usuario de fotografías de los seis meses de enero.
 
-+ **monthly_table.csv**:  
++ **PUD_monthly_table.csv**:
 
-  + Esta tabla contiene el total de fotos-usuarios-días contabilizados en cada celda para cada mes del intervalo de fechas elegido. Cada fila de esta tabla es una única celda o polígono de la cuadrícula ADI. Las columnas representan los meses ("2005-1" es enero de 2005, "2014-12" es diciembre de 2014).
+  + Esta tabla contiene el total de días-usuario de fotografías contabilizados en cada celda para cada mes del intervalo de fechas elegido. Cada fila de la tabla corresponde a una celda única de la cuadrícula del AOI o a un polígono. Las columnas representan los meses («2012-1» es enero de 2012 y «2017-12» es diciembre de 2017).
 
-+ **predictor_data.shp** (resultado si se selecciona Calcular regresión):
++ **TUD_results.gpkg**: Consulte la descripción de **PUD_results.gpkg**; sin embargo, en lugar de días-usuario de fotografías, este archivo contiene los recuentos de días-usuario de Twitter.
 
-  + Este shapefile tiene polígonos que coinciden con los de "pud_results.shp" y tiene campos definidos por los ids dados en la Tabla de predictores. Los valores de esos campos son la métrica calculada por la característica de respuesta (:ref:`rec-data-needs`: Predictor Table).
++ **TUD_monthly_table.csv**: Consulte la descripción de **PUD_monthly_table.csv**; sin embargo, en lugar de días-usuario de fotografías, este archivo contiene los recuentos de días-usuario de Twitter.
 
-+ **regression_coefficients.txt** (resultado si se selecciona Calcular regresión):
++ **regression_data.gpkg**: Polígonos del AOI con todas las variables necesarias para calcular una regresión, incluidos los atributos predictores y la variable de respuesta de días-usuario. Los campos incluyen:
 
-  + Se trata de un archivo de texto resultante del análisis de regresión. Incluye las estimaciones de :math:`beta_p` para cada variable predictiva (véase :ref:`rec-how-it-works`). También contiene un valor "server id hash" que puede utilizarse para correlacionar el resultado del PUD con los datos disponibles en el servidor PUD. Si estos resultados se utilizan en la publicación, este hash debe incluirse con los resultados para su reproducibilidad.
+    + **pr_PUD**: proporción de la suma de PUD_YR_AVG correspondiente a todas las entidades.
 
-+ **scenario_results.shp** (resultado si se proporciona la Tabla de predicción de escenarios):
+    + **pr_TUD**: proporción de la suma de TUD_YR_AVG correspondiente a todas las entidades.
 
-  + Este shapefile coincide con "predictor_data.shp", pero sus campos provienen de los predictores definidos en la Tabla de predicción de escenarios y hay un campo adicional "PUD_EST" que es el PUD_YR_AVG estimado por polígono.
+    + **avg_pr_UD**: promedio de pr_PUD y pr_TUD. Esta variable se transforma mediante logit y luego se utiliza como variable de respuesta en el modelo de regresión.
 
-+ **natcap.invest...client-log...txt** 
+    + Si se selecciona Compute Regression, habrá un campo para cada predictor definido en la Tabla de predictores. Los valores de esos campos se basan en la métrica definida en dicha tabla. (:ref:`rec-data-needs`: Tabla de predictores).
 
-  + Este archivo de texto es el registro que se produce automáticamente cada vez que se ejecuta el modelo. Puede ser útil para solucionar errores. En la parte superior del registro también se encuentra un registro de todos los valores de input seleccionados para esa ejecución del modelo.
++ **regression_summary.txt** (resultado generado si se selecciona Compute Regression):
+
+  + Este archivo de texto contiene los resultados del análisis de regresión. Incluye las estimaciones de :math:`\beta_p` para cada variable predictora (consulte :ref:`rec-how-it-works`). También contiene un valor «server id hash» que puede utilizarse para relacionar los resultados de PUD y TUD con los datos disponibles en el servidor. Si estos resultados se utilizan en una publicación, este hash debe incluirse para garantizar la reproducibilidad.
+
++ **regression_coefficients.csv** (resultado generado si se selecciona Compute Regression):
+
+  + Resultado tabular de las estimaciones de los coeficientes, que también se incluyen en «regression_summary.txt».
+
++ **scenario_results.gpkg** (resultado generado si se proporciona una Tabla de predictores de escenario):
+
+  + Este geopackage coincide con «regression_data.gpkg», pero sus campos proceden de los predictores definidos en la Tabla de predictores de escenario e incluye un campo adicional:
+
+  + **pr_UD_est**: valor estimado de **avg_pr_UD** para cada polígono. Se estima utilizando los coeficientes de regresión de cada predictor incluidos en **regression_coefficients.csv**.
+
++ **natcap.invest...client-log...txt**
+
+  + Este archivo de texto es el registro (*log*) que se genera automáticamente cada vez que se ejecuta el modelo. Puede ser útil para solucionar errores. En la parte superior del registro también se incluye un resumen de todos los valores de entrada seleccionados para esa ejecución del modelo.
 
 .. _rec-references:
 
 Referencias
 ===========
 
-Adamowicz, WL, R Naidoo, E Nelson, S Polasky, J Zhang. 2011. Nature-based tourism and recreation. In: Kareiva P, G Daily, T Ricketts, H Tallis, S Polasky (eds) Natural Capital: Theory and Practice of Mapping Ecosystem Services. Oxford University Press, Nueva York.
+Adamowicz, WL, R Naidoo, E Nelson, S Polasky, J Zhang. 2011. Nature-based tourism and recreation. In: Kareiva P, G Daily, T Ricketts, H Tallis, S Polasky (eds) Natural Capital: Theory and Practice of Mapping Ecosystem Services. Oxford University Press, New York.
 
 Balmford, A, J Beresford, J Green, R Naidoo, M Walpole, A Manica. 2009. A global perspective on trends in nature-based tourism. PLoS Biology 7: e1000144.
 
@@ -189,13 +222,13 @@ Puhakka, L, M Salo, IE Sääksjärvi. 2011. Bird diversity, birdwatching tourism
 
 Richardson, R, JB Loomis. 2005. Climate change and recreation benefits in an alpine national park. Journal of Leisure Research 37: 307-320.
 
-Russell, R, AD Guerry, P Balvanera, RK Gould, X Basurto, KM Chan, S Klain, J Levine, J Tam. 2013. Humans and nature: how knowing and experiencing nature affect well-being. Annual Review of Environment and Resources 38: en prensa.
+Russell, R, AD Guerry, P Balvanera, RK Gould, X Basurto, KM Chan, S Klain, J Levine, J Tam. 2013. Humans and nature: how knowing and experiencing nature affect well-being. Annual Review of Environment and Resources 38: in press.
 
 Trainor, SF, RB Norgaard. 1999. Recreation fees in the context of wilderness values. Journal of Park and Recreation Administration 17: 100-115.
 
 Uyarra, MC, AR Watkinson, IM Côté. 2009. Managing dive tourism for the sustainable use of coral reefs: validating diver perceptions of attractive site features. Environmental Management 43: 1-16.
 
-van der Walt, Stéfan, S. Chris Colbert, and Gaël Varoquaux. 2011. The NumPy Array: A Structure for Efficient Numerical Computation. Computing in Science & Engineering 13 (2): 22–30. 
+van der Walt, Stéfan, S. Chris Colbert, and Gaël Varoquaux. 2011. The NumPy Array: A Structure for Efficient Numerical Computation. Computing in Science & Engineering 13 (2): 22–30.
 
 Williams, ID, NV Polunin. 2000. Differences between protected and unprotected reefs of the western Caribbean in attributes preferred by dive tourists. Environmental Conservation 27: 382-391.
 

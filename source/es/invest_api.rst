@@ -1,14 +1,14 @@
-﻿.. _invest_api:
+.. _invest_api:
 
-*******************************
-Guía de scripts y API de InVEST
-*******************************
+***********************************
+Guía de *scripting* y API de InVEST
+***********************************
 
 Introducción
 ============
 
-Si bien existe una interfaz de usuario para todos los modelos InVEST, también proporcionamos una interfaz de programación de aplicaciones (API) en Python para un uso más avanzado de los modelos. La documentación completa del paquete Python ``natcap.invest`` está disponible aquí: https://invest.readthedocs.io/en/latest/
+Aunque todos los modelos de InVEST cuentan con una interfaz de usuario, también ofrecemos una interfaz de programación de aplicaciones (API) de Python para un uso más avanzado de los modelos. La documentación completa del paquete de Python ``natcap.invest`` está disponible aquí: https://invest.readthedocs.io/en/latest/
 
-Además, nuestras rutinas principales de geoprocesamiento se han abierto como un paquete Python separado, ``pygeoprocessing``, disponible aquí: https://github.com/natcap/pygeoprocessing. La documentación de la API para PyGeoprocessing está disponible aquí: https://pygeoprocessing.readthedocs.io/en/latest/.
+Además, nuestras rutinas centrales de geoprocesamiento se han publicado como código abierto en un paquete independiente de Python, ``pygeoprocessing``, disponible aquí: https://github.com/natcap/pygeoprocessing. La documentación de la API de PyGeoprocessing está disponible aquí: https://pygeoprocessing.readthedocs.io/en/latest/.
 
-Esta documentación se actualizará con más detalle en el futuro. La ayuda de programación también está disponible en nuestros foros: https://community.naturalcapitalalliance.org/.
+Esta documentación se ampliará con más detalle en el futuro. También ofrecemos asistencia sobre programación en nuestros foros de usuarios: https://community.naturalcapitalalliance.org/.

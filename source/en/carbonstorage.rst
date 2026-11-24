@@ -85,11 +85,13 @@ Finally, while most sequestration follows a nonlinear path such that carbon is s
 Data Needs
 ==========
 
-.. note:: All spatial inputs must be in the same projected coordinate system and in linear meter units.
+.. note:: All spatial inputs will be reprojected to match the Target Projection input, which must have a projected coordinate system (with linear units of meters), *not* a geographic coordinate system (with units of degrees). By default, the Baseline LULC is the Target Projection input.
 
-.. note:: If you are including an alternate LULC, this raster must have a pixel size that is *exactly the same* as the baseline LULC raster.
+.. note:: If you are including an Alternate LULC, the raster inputs may have different cell sizes. All raster inputs will be resampled to match the cell size specified by the Target Pixel Size input, after that raster has been reprojected to the Target Projection. By default, the Baseline LULC is used as the Target Pixel Size input.
 
 .. note:: All carbon data should be for elemental carbon, not CO\ :sub:`2`.
+
+- :investspec:`carbon aoi_path`
 
 - :investspec:`carbon lulc_bas_path`
 
@@ -132,6 +134,9 @@ Data Needs
 
   Setting this rate greater than 0% suggests that the societal value of carbon sequestered in the future is less than the value of carbon sequestered now. It has been widely argued that GHG emissions need to be curtailed immediately to avoid crossing a GHG atmospheric concentration threshold that would lead to a 3 degree Celsius or greater change in global average temperature by 2105. Some argue that such a temperature change would lead to major disruptions in economies across the world (Stern et al. 2006). Therefore, any mitigation in GHG emissions that occurs many years from now may have no effect on whether or not this crucial concentration threshold is passed. If this is the case, C sequestration in the far future would be relatively worthless and a carbon discount rate greater than zero is warranted.
 
+- :investspec:`carbon target_projection_id`
+
+- :investspec:`carbon target_pixelsize_id`
 
 Interpreting Results
 ====================

@@ -97,6 +97,8 @@ Necesidades de datos
 
 .. note:: Todos los datos de carbono deben ser para el carbono elemental, no CO\ :sub:`2`.
 
+- :investspec:`carbon aoi_path`
+
 - :investspec:`carbon lulc_bas_path`
 
 - :investspec:`carbon lulc_bas_year`
@@ -141,6 +143,9 @@ Necesidades de datos
 
   Por otra parte, fijar la tasa de cambio anual en menos del 0% (por ejemplo, -2%) sugiere que el valor social del carbono secuestrado en el futuro es mayor que el valor del carbono secuestrado ahora (se trata de una cuestión distinta del valor del dinero en el futuro, una dinámica que se tiene en cuenta con la tasa de descuento del mercado). Este puede ser el caso si los daños asociados al cambio climático en el futuro se aceleran a medida que aumenta la concentración de GEI en la atmósfera.
 
+- :investspec:`carbon target_projection_id`
+
+- :investspec:`carbon target_pixelsize_id`
 
 Interpretación de los resultados
 ================================

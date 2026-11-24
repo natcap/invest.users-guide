@@ -199,4 +199,4 @@ rst_prolog = f"""
 # Shoehorning the git commit information into the copyright.
 # This feels like a hacky shortcut, but it's easier to do than the custom theme
 # modification needed to do it 'right' and it does what it needs to.
-copyright = f'The Natural Capital Project. | Build {git_version}'
+copyright = f'The Natural Capital Alliance. | Build {git_version}'
